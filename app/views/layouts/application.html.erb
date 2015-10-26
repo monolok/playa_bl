@@ -7,8 +7,51 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<p class="bg-success"><%= notice %></p>
+
+<div class="container-fluid line-bot">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-sm-12 inline">
+					<i class="fa fa-user-secret fa-2x pad-right"></i>
+					<p class="pad-right text-success"> Private web-app - Playa Del Carmen Hostels </p>
+					<p class="text-danger"> Version: Beta</p>							
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 inline">
+					<i class="fa fa-envelope fa-2x pad-right"></i>
+					<%= mail_to "antoinebe35@gmail.com", "Contact Antoine (web-app owner) - English, Español, Français, " %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 inline">
+					<i class="fa fa-comment fa-2x pad-right"></i>
+					<p class="text-warning pad-right">Antoine:</p>
+					<mark>Avisanme de lo que se tiene que mejorar, voy trabajando en la version 1.1</mark>
+				</div>
+			</div>			
+		</div>
+		</br>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-sm-4 center">
+					<button type="button" class="btn btn-primary">Account</button>			
+				</div>
+				<div class="col-sm-4 center">
+					<button type="button" class="btn btn-info">Inbox (1)</button>
+				</div>
+				<div class="col-sm-4 center">
+					<button type="button" class="btn btn-danger">Sign-out</button>
+				</div>					
+			</div>		
+		</div>
+	</div>
+</div>
+
+<p class="bg-danger"><%= alert %></p>
+
 <%= yield %>
 
 </body>

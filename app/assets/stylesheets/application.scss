@@ -10,6 +10,33 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+.inline {
+	display: inline-flex;
+}
+
+.pad-right {
+	padding-right: 4%;
+}
+
+.pad-right1 {
+	padding-right: 9%;
+}
+
+.center {
+	text-align: center;
+}
+
+.btn {
+	padding: 3px 6px;
+}
+
+.line-bot {
+	border-bottom-style: dotted;
+	padding-block-end: 2%;
+}
