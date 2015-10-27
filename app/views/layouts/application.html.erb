@@ -10,13 +10,15 @@
 <p class="bg-success"><%= notice %></p>
 
 <div class="container-fluid line-bot">
+	<h1><kbd><%= link_to "Black-list", root_path, {:style=>'color:#FFFFFF; text-decoration:none'}%></kbd></h1>
+	</br>
 	<div class="row">
 		<div class="col-md-8">
 			<div class="row">
 				<div class="col-sm-12 inline">
 					<i class="fa fa-user-secret fa-2x pad-right"></i>
-					<p class="pad-right text-success"> Private web-app - Playa Del Carmen Hostels </p>
-					<p class="text-danger"> Version: Beta</p>							
+					<p class="pad-right text-success"> Private web-app for Playa Del Carmen Hostels </p>
+					<p class="text-danger"> Version: 1.0 (Beta)</p>							
 				</div>
 			</div>
 			<div class="row">
@@ -31,21 +33,35 @@
 					<p class="text-warning pad-right">Antoine:</p>
 					<mark>Avisanme de lo que se tiene que mejorar, voy trabajando en la version 1.1</mark>
 				</div>
-			</div>			
-		</div>
-		</br>
-		<div class="col-md-4">
+			</div>
 			<div class="row">
-				<div class="col-sm-4 center">
-					<button type="button" class="btn btn-primary">Account</button>			
+				<div class="col-sm-12 inline">
+					<i class="fa fa-cogs fa-2x pad-right"></i>
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-primary">Account</button>
+					</div>
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-danger">Sign-out</button>	
+					</div>	
 				</div>
-				<div class="col-sm-4 center">
-					<button type="button" class="btn btn-info">Inbox (1)</button>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 inline">
+					<i class="fa fa-search fa-2x pad-right"></i>
+					<div class="input-group">
+      					<input type="text" class="form-control" placeholder="Search for...">
+					    <span class="input-group-btn">
+					        <button class="btn btn-default" type="button">Go!</button>
+					    </span>
+					</div>
 				</div>
-				<div class="col-sm-4 center">
-					<button type="button" class="btn btn-danger">Sign-out</button>
-				</div>					
-			</div>		
+			</div>
+			<div class="row">
+				<div class="col-sm-12 inline">
+					<i class="fa fa-user-plus fa-2x pad-right"></i>
+					<%= link_to 'Add someone to the Black-list', new_client_path, {:style=>'color:#333;'} %>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
