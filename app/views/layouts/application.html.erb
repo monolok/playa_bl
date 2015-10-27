@@ -48,11 +48,15 @@
 			<div class="row">
 				<div class="col-sm-12 inline">
 					<i class="fa fa-search fa-2x pad-right"></i>
-					<div class="input-group">
-      					<input type="text" class="form-control" placeholder="Search for...">
-					    <span class="input-group-btn">
-					        <button class="btn btn-default" type="button">Go!</button>
-					    </span>
+					<div class="input-group">	
+						<%= form_tag root_path, :method => 'get' do %>
+						  <p>
+						    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search for..." %>
+						    <span class="input-group-btn">
+						    	<%= submit_tag "Search", :name => nil, class: "btn btn-default"%>
+						    </span>
+						  </p>
+						<% end %>
 					</div>
 				</div>
 			</div>

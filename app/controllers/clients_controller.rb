@@ -5,7 +5,11 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    if params[:search].present?
+      @clients = Client.search(params[:search])
+    else
+      @clients = Client.all
+    end
   end
 
   # GET /clients/1
