@@ -6,7 +6,11 @@ class ClientsController < ApplicationController
   # GET /clients.json
   def index
     if params[:search].present?
-      @clients = Client.search(params[:search])
+      if params[:search].to_i != 0
+        @clients = Client.search_id(params[:search])
+      else
+        @clients = Client.search(params[:search])
+      end
     else
       @clients = Client.all
     end
