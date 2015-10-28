@@ -3,7 +3,7 @@ class Client < ActiveRecord::Base
 	has_one :image
 
 def self.search(query)
-  where('first_name LIKE ? OR last_name LIKE ? OR address LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
+  where('name LIKE ? OR address LIKE ? OR country LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
 end
 
 scope :search_id, -> (query) {

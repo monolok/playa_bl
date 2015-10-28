@@ -1,13 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @client.first_name %>
+<div class="container-fluid pad-bot">
+  <div class="row">
+    <p>
+  <strong>Name:</strong>
+  <%= @client.name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
-  <%= @client.last_name %>
+  <strong>Country:</strong>
+  <%= @client.country %>
 </p>
 
 <p>
@@ -21,9 +21,32 @@
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @client.image_id %>
+  <strong>Document:</strong>
+  <%# @client.image_id %>
 </p>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<p>
+  <strong>Danger:</strong>
+  <%= @client.danger %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @client.created_at %>
+</p>
+
+<p>
+  <strong>Hostal:</strong>
+  <%= @client.user %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @client.comment %>
+</p>
+
+<%= link_to 'Edit', edit_client_path(@client) %></td>
+<%= link_to 'Destroy', @client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<%= link_to 'Back', root_path %>
+  </div>
+</div>

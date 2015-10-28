@@ -24,10 +24,12 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
+    @danger = [["Accept with cautious", 1], ["Do not accept", 2]]
   end
 
   # GET /clients/1/edit
   def edit
+    @danger = [["Accept with cautious", 1], ["Do not accept", 2]]
   end
 
   # POST /clients
@@ -78,6 +80,6 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:first_name, :last_name, :national_id, :address, :image_id)
+      params.require(:client).permit(:name, :country, :national_id, :address, :image_id, :danger, :comment)
     end
 end

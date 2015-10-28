@@ -25,8 +25,21 @@
 	padding-right: 4%;
 }
 
+.pad-bot {
+    padding-bottom: 2%;
+}
+
 .pad-right1 {
 	padding-right: 9%;
+}
+
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}
+
+tr {
+    cursor: pointer;
 }
 
 .center {
@@ -45,6 +58,11 @@
 .line-bot {
 	border-bottom-style: dotted;
 	padding-block-end: 2%;
+}
+
+.line-up {
+    border-top-style: dotted;
+    padding-block-end: 2%;
 }
 
 .portlet {
