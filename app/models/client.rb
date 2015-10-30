@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
 	belongs_to :user
-	has_one :image
+	has_one :document
 
 def self.search(query)
   where('name LIKE ? OR address LIKE ? OR country LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")

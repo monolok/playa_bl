@@ -82,4 +82,8 @@ class ClientsController < ApplicationController
     def client_params
       params.require(:client).permit(:name, :country, :national_id, :address, :image_id, :danger, :comment, :document)
     end
+
+    def document_params
+      params.require(:document).permit(:name)
+    end
 end
