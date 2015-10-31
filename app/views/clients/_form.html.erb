@@ -28,8 +28,9 @@
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :document %><br>
-    <%= file_field(:attachment, :file, class: 'file_input')%>
+    <%= f.fields_for @document do |doc| %><br>
+      <%= doc.file_field(:data, class: 'file_input')%>
+    <%end%>
   </div>
   <div class="field">
     <%= f.label :danger %><br>

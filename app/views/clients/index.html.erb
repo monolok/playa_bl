@@ -25,6 +25,7 @@
           <% end %>
         </tbody>
       </table>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">View all</button>
     </div>
     <div class="col-md-6">
       <div class="portlet portlet-default">
@@ -108,5 +109,38 @@
         </div>
       </div>
     </div>    
+  </div>
+</div>
+
+<!-- MODAL -->
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <table class="table table-hover">
+            <thead>
+              <tr class="not-active">
+                <th>Name</th>
+                <th>country</th>
+                <th>Danger</th>
+                <th>Date</th>            
+                <th>Hostal</th>                                                
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <% @client_all.each do |client| %>
+                    <tr onclick="document.location = 'clients/<%= client.id%>';">
+                      <td><%= client.name %></td>
+                      <td><%= client.country %></td>                        
+                      <td><%= client.danger %></td>              
+                      <td><%= client.created_at %></td>
+                      <td><%= client.user %></td>  
+                    </tr>
+              <% end %>
+            </tbody>
+      </table>
+    </div>
   </div>
 </div>

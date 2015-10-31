@@ -1,44 +1,41 @@
 <div class="container-fluid pad-bot">
   <div class="row">
-    <p>
-  <strong>Name:</strong>
-  <%= @client.name %>
-</p>
+      <table class="table table-hover not-active">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>ID</th>            
+            <th>Address</th>
+            <th>Danger</th>            
+            <th>Created at</th> 
+            <th>Reported by</th>                                                
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-<p>
-  <strong>Country:</strong>
-  <%= @client.country %>
-</p>
+        <tbody>
+            <tr>
+              <td><%= @client.name %></td>
+              <td><%= @client.country %></td>                        
+              <td><%= @client.national_id %></td>              
+              <td><%= @client.address%></td>
+              <td><%= @client.danger %></td>          
+              <td><%= @client.created_at %></td>
+              <td><%= @client.user %></td>  
+            </tr>
+        </tbody>
+      </table>
 
-<p>
-  <strong>National:</strong>
-  <%= @client.national_id %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @client.address %>
-</p>
-
+<% if not @client.document.nil?%>
 <p>
   <strong>Document:</strong>
-  <%# @client.image_id %>
+  <!-- <iframe src="http://localhost:3000/clients/<%=@client.id%>/pdf" style="width:718px; height:700px;" frameborder="0"></iframe> -->
+  <%# image_tag(url_for(:controller => 'clients', :action => '_view_pdf', :id => @client.document.id), id: "content-header-pdf", alt: "" ) %>
+  <%= link_to @client.document.name, pdf_client_path(@client.id) %>
 </p>
-
-<p>
-  <strong>Danger:</strong>
-  <%= @client.danger %>
-</p>
-
-<p>
-  <strong>Created at:</strong>
-  <%= @client.created_at %>
-</p>
-
-<p>
-  <strong>Hostal:</strong>
-  <%= @client.user %>
-</p>
+<%end%>
 
 <p>
   <strong>Comment:</strong>

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'clients#index'
-  resources :clients
+  resources :clients do 
+    member do
+      get 'pdf', to: 'clients#_view_pdf'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
