@@ -20,12 +20,13 @@
               <td><%= client.country %></td>                        
               <td><%= client.danger %></td>              
               <td><%= client.created_at %></td>
-              <td><%= client.user %></td>  
+              <td><%= client.user.hostal_name %></td>  
             </tr>
           <% end %>
         </tbody>
       </table>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">View all</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">View all clients</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg1">View all hostels</button>
     </div>
     <div class="col-md-6">
       <div class="portlet portlet-default">
@@ -112,7 +113,7 @@
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL 1 -->
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
@@ -141,6 +142,36 @@
               <% end %>
             </tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL 2 -->
+<div class="modal fade bs-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <table class="table table-hover not-active">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Persone in charge</th>            
+                <th colspan="3"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @users.each do |u| %>
+                    <tr>
+                        <td><%= u.hostal_name%></td>
+                        <td><%= u.address%></td>
+                        <td><%= u.phone%></td>
+                        <td><%= u.manager%></td> 
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>  
     </div>
   </div>
 </div>

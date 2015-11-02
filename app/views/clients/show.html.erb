@@ -1,7 +1,7 @@
 <div class="container-fluid pad-bot">
   <div class="row">
-      <table class="table table-hover not-active">
-        <thead>
+      <table class="table">
+        <thead class="not-active">
           <tr>
             <th>Name</th>
             <th>Country</th>
@@ -14,7 +14,7 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody class="not-active">
             <tr>
               <td><%= @client.name %></td>
               <td><%= @client.country %></td>                        
@@ -22,7 +22,9 @@
               <td><%= @client.address%></td>
               <td><%= @client.danger %></td>          
               <td><%= @client.created_at %></td>
-              <td><%= @client.user %></td>  
+              <td>
+                <button type="button" class="active btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg"><%= @client.user.hostal_name %></button>  
+              </td>
             </tr>
         </tbody>
       </table>
@@ -45,5 +47,13 @@
 <%= link_to 'Edit', edit_client_path(@client) %></td>
 <%= link_to 'Destroy', @client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <%= link_to 'Back', root_path %>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
   </div>
 </div>

@@ -38,6 +38,11 @@
    cursor: default;
 }
 
+.active {
+    pointer-events: auto;
+    background-color: none;
+}
+
 tr {
     cursor: pointer;
 }

@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy, :_view_pdf]
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
 
   # GET /clients
   # GET /clients.json
@@ -16,6 +16,7 @@ class ClientsController < ApplicationController
     end
 
     @client_all = Client.all.order(created_at: :desc)
+    @users = User.all.order('hostal_name ASC')
   end
 
   # GET /clients/1
@@ -50,7 +51,7 @@ class ClientsController < ApplicationController
         t.mime_type = params[:client][:document][:data].content_type
       end
     end
-
+    @client.user_id = current_user.id
     respond_to do |format|
       if @client.save || @document.save
         format.html { redirect_to @client, notice: 'Client was successfully created.' }
@@ -95,7 +96,7 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:name, :country, :national_id, :address, :image_id, :danger, :comment, document_attributes: [:id, :name])
+      params.require(:client).permit(:name, :country, :national_id, :address, :danger, :comment, document_attributes: [:id, :name])
     end
 
 end
