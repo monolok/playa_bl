@@ -19,7 +19,7 @@
               <td><%= client.name %></td>
               <td><%= client.country %></td>                        
               <td><%= client.danger %></td>              
-              <td><%= client.created_at %></td>
+              <td><%= client.created_at.strftime("%m/%d/%Y") %></td>
               <td><%= client.user.hostal_name %></td>  
             </tr>
           <% end %>
@@ -28,6 +28,7 @@
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">View all clients</button>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg1">View all hostels</button>
     </div>
+    </br>
     <div class="col-md-6">
       <div class="portlet portlet-default">
         <div class="portlet-heading">
@@ -136,7 +137,7 @@
                       <td><%= client.name %></td>
                       <td><%= client.country %></td>                        
                       <td><%= client.danger %></td>              
-                      <td><%= client.created_at %></td>
+                      <td><%= client.created_at.strftime("%m/%d/%Y") %></td>
                       <td><%= client.user.hostal_name %></td>  
                     </tr>
               <% end %>

@@ -2,40 +2,53 @@
 
 <%= form_for(@client) do |f| %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+<div class="container-fluid">
+  <div class="row pad-bot">
+    <div class="col-sm-6">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="exampleInputName2">Name</label>
+          <%= f.text_field :name, class: "form-control", id: "exampleInputName2", placeholder: "Jane Doe"%>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName2">Country</label>
+          <%= f.text_field :country, class: "form-control", id: "exampleInputName2", placeholder: "USA"%>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName2">National ID</label>
+          <%= f.text_field :national_id, class: "form-control", id: "exampleInputName2", placeholder: "347876ATF" %>
+        </div>
+          <label for="exampleInputName2">Address</label>
+          <%= f.text_field :address, class: "form-control", id: "exampleInputName2", placeholder: "Urión 30, Col. Atlatilco, 02860 MEXICO, D.F."%>
+      </form>       
+    </div> 
+    <div class="col-sm-6">
+      <form>
+          <div class="form-group">
+            <label for="exampleInputName2">Document uploder</label>
+            <%= f.fields_for @document do |doc| %><br>
+              <%= doc.file_field(:data, class: 'file_input')%>
+            <%end%>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName2">Black-list degree</label>
+            <%= f.select(:danger) do %>
+              <% @danger.each do |d| %>
+                <%= content_tag(:option, d.first, value: d.first) %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName2">Comment</label>
+            <%= f.text_area :comment, class: "form-control", rows: 3, id: "exampleInputName2", placeholder: "Violent, thief ..."%>
+          </div>
+      </form>       
+    </div> 
   </div>
-  <div class="field">
-    <%= f.label :country %><br>
-    <%= f.text_field :country %>
-  </div>  
-  <div class="field">
-    <%= f.label :national_id %><br>
-    <%= f.number_field :national_id %>
+  <div class="row center">
+    <%= f.submit class: 'btn btn-default' %>  
+    <%= link_to "Back", root_path, {:style=>'color:black; text-decoration:none', :class => 'btn btn-default'}%>  
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.fields_for @document do |doc| %><br>
-      <%= doc.file_field(:data, class: 'file_input')%>
-    <%end%>
-  </div>
-  <div class="field">
-    <%= f.label :danger %><br>
-    <%= f.select(:danger) do %>
-      <% @danger.each do |d| %>
-        <%= content_tag(:option, d.first, value: d.first) %>
-      <% end %>
-    <% end %>
-  </div> 
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
-  </div> 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+
 <% end %>

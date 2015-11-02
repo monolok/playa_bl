@@ -21,7 +21,7 @@
               <td><%= @client.national_id %></td>              
               <td><%= @client.address%></td>
               <td><%= @client.danger %></td>          
-              <td><%= @client.created_at %></td>
+              <td><%= @client.created_at.strftime("%m/%d/%Y") %></td>
               <td>
                 <button type="button" class="active btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg"><%= @client.user.hostal_name %></button>  
               </td>
@@ -46,9 +46,11 @@
   </p>
 <%end%>
 
-<%= link_to 'Edit', edit_client_path(@client) %></td>
-<%= link_to 'Destroy', @client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<%= link_to 'Back', root_path %>
+<%if @client.user_id == current_user.id%>
+  <%= link_to 'Edit', edit_client_path(@client) %></td>|
+  <%= link_to 'Destroy', @client, method: :delete, data: { confirm: 'Are you sure?' } %></td>|
+  <%= link_to 'Back', root_path %>
+<%end%>
   </div>
 </div>
 

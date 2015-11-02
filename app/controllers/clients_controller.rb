@@ -62,7 +62,7 @@ class ClientsController < ApplicationController
         format.html { redirect_to @client, notice: 'Client was successfully created.' }
         format.json { render :show, status: :created, location: @client }
       else
-        
+        puts @client.errors.messages
         if @client.errors.messages.has_key?(:danger)
           flash[:alert] = "Mention customer's blacklist degree"
         elsif @client.errors.messages.has_key?(:name)
@@ -110,7 +110,9 @@ class ClientsController < ApplicationController
   # DELETE /clients/1.json
   def destroy
     @client.destroy
-    @client.document.destroy
+    if not @client.document.nil?
+      @client.document.destroy
+    end
     respond_to do |format|
       format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
       format.json { head :no_content }
