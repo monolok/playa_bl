@@ -39,10 +39,12 @@
 </p>
 <%end%>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @client.comment %>
-</p>
+<% if not @client.comment.empty?%>
+  <p>
+    <strong>Comment:</strong>
+    <%= @client.comment %>
+  </p>
+<%end%>
 
 <%= link_to 'Edit', edit_client_path(@client) %></td>
 <%= link_to 'Destroy', @client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -53,7 +55,26 @@
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      ...
+      <table class="table table-hover not-active">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Persone in charge</th>            
+                <th colspan="3"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                    <tr>
+                        <td><%= @client.user.hostal_name%></td>
+                        <td><%= @client.user.address%></td>
+                        <td><%= @client.user.phone%></td>
+                        <td><%= @client.user.manager%></td> 
+                    </tr>
+            </tbody>
+        </table> 
     </div>
   </div>
 </div>

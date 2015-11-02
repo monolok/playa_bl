@@ -32,12 +32,13 @@ class ClientsController < ApplicationController
   def new
     @client = Client.new
     @document = @client.build_document
-    @danger = [["Accept with cautious", 1], ["Do not accept", 2]]
+    @danger = [["", nil], ["Accept with cautious", 1], ["Do not accept", 2]]
   end
 
   # GET /clients/1/edit
   def edit
-    @danger = [["Accept with cautious", 1], ["Do not accept", 2]]
+    @document = @client.build_document
+    @danger = [["", nil], ["Accept with cautious", 1], ["Do not accept", 2]]
   end
 
   # POST /clients
@@ -51,13 +52,24 @@ class ClientsController < ApplicationController
         t.mime_type = params[:client][:document][:data].content_type
       end
     end
+
     @client.user_id = current_user.id
     respond_to do |format|
-      if @client.save || @document.save
+      if @client.save
+        if not @document.nil?
+          @document.save
+        end
         format.html { redirect_to @client, notice: 'Client was successfully created.' }
         format.json { render :show, status: :created, location: @client }
       else
-        format.html { render :new }
+        
+        if @client.errors.messages.has_key?(:danger)
+          flash[:alert] = "Mention customer's blacklist degree"
+        elsif @client.errors.messages.has_key?(:name)
+          flash[:alert] = "You need to at least provide a name"
+        end
+        
+        format.html { redirect_to :back }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
@@ -67,12 +79,28 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1
   # PATCH/PUT /clients/1.json
   def update
+    if not params[:client][:document].nil?
+      @document = @client.build_document(:name => params[:client][:document][:data].original_filename) do |t|
+        t.data = Base64.encode64(params[:client][:document][:data].read)
+        t.filename = params[:client][:document][:data].original_filename
+        t.mime_type = params[:client][:document][:data].content_type
+      end
+      @document.save
+    end
+
     respond_to do |format|
       if @client.update(client_params)
         format.html { redirect_to @client, notice: 'Client was successfully updated.' }
         format.json { render :show, status: :ok, location: @client }
       else
-        format.html { render :edit }
+
+        if @client.errors.messages.has_key?(:danger)
+          flash[:alert] = "Mention customer's blacklist degree"
+        elsif @client.errors.messages.has_key?(:name)
+          flash[:alert] = "You need to at least provide a name"
+        end
+        
+        format.html { redirect_to :back }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
@@ -82,6 +110,7 @@ class ClientsController < ApplicationController
   # DELETE /clients/1.json
   def destroy
     @client.destroy
+    @client.document.destroy
     respond_to do |format|
       format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
       format.json { head :no_content }
