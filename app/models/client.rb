@@ -7,7 +7,7 @@ class Client < ActiveRecord::Base
   	validates :danger, presence: true
 
 def self.search(query)
-  where('name LIKE ? OR address LIKE ? OR country LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
+	where('name ILIKE ? OR address ILIKE ? OR country ILIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
 end
 
 scope :search_id, -> (query) {
