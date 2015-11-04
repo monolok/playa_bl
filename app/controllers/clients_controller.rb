@@ -38,7 +38,12 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @document = @client.build_document
-    @danger = [["", nil], ["Accept with cautious", 1], ["Do not accept", 2]]
+    if @client.danger == "Accept with cautious"
+      @danger = [["Accept with cautious", 1], ["Do not accept", 2]]
+    else
+      @danger = [["Do not accept", 2], ["Accept with cautious", 1]]
+    end
+    
   end
 
   # POST /clients
