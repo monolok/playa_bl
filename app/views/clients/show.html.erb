@@ -37,6 +37,10 @@
   <%# image_tag(url_for(:controller => 'clients', :action => '_view_pdf', :id => @client.document.id), id: "content-header-pdf", alt: "" ) %>
   <%= link_to @client.document.name, pdf_client_path(@client.id) %>
 </p>
+<%else%>
+  <p>
+    <strong class="text-danger">No document uploaded</strong>
+  </p>
 <%end%>
 
 <% if not @client.comment.empty?%>
@@ -44,12 +48,20 @@
     <strong>Comment:</strong>
     <%= @client.comment %>
   </p>
+<%else%>
+  <p>
+    <strong class="text-danger">No comment provided</strong>
+  </p>
 <%end%>
 
 <%if @client.user_id == current_user.id%>
   <%= link_to 'Edit', edit_client_path(@client) %></td>|
   <%= link_to 'Destroy', @client, method: :delete, data: { confirm: 'Are you sure?' } %></td>|
   <%= link_to 'Back', root_path %>
+<%else%>
+  <p>
+    <strong class="text-danger">Only hostal that reported the client can edit or remove </strong>
+  </p>
 <%end%>
   </div>
 </div>
